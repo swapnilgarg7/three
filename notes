@@ -1,0 +1,52 @@
+// threejs.org/docs/
+
+const scene = new THREE.scene()
+
+const geometry = new THREE.BoxGeometry(1, 1, 1)
+const material = new THREE.MeshBasicMaterial({ color: "", map: colorTexture })
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh)
+
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
+camera.position.z = 3
+scene.add(camera);
+
+const canvas = doc.querySelector('webgl')
+const renderer = new THREE.WebGLRenderer({
+    canvas: canvas
+})
+renderer.setSize(sizes.width, sizes.height)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+//render within tick function
+
+
+//transformation
+position.set(x, y, z)
+scale
+rotation
+
+camera.lookAt(mesh.position)
+
+//animating
+gsap.to(mesh.position, { duration: 1, delay: 1, x: 2 })
+gsap.to(mesh.position, { duration: 1, delay: 2, x: 0 })
+const clock = new THREE.Clock()
+const tick = () => {
+    const elapsedTime = clock.getElapsedTime()
+
+    mesh.rotation.y += 0.01;
+    mesh.position.y = Math.sin(elapsedTime);
+    mesh.position.x = Math.cos(elapsedTime);
+
+    //one revolution per second 
+    //mesh.rotation.y = elapsedTime* Math.PI * 2;
+    renderer.render(scene, camera);
+
+    //rotate camera pos in x,y & keep doing lookAt cube
+
+    window.requestAnimationFrame(tick);
+}
+tick();
+
+//take care of resizing
+
