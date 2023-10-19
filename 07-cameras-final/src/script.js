@@ -2,10 +2,7 @@ import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
-/**
- * Base
- */
-// Canvas
+
 const canvas = document.querySelector('canvas.webgl')
 
 // Sizes
@@ -83,6 +80,7 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
 renderer.setSize(sizes.width, sizes.height)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 // Animate
 const clock = new THREE.Clock()
